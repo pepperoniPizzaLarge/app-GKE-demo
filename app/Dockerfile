@@ -2,7 +2,7 @@ FROM python:3.11.11-slim
 
 WORKDIR /app
 
-COPY ./app/requirements.txt /app/
+COPY ./requirements.txt /app/
 
 RUN pip install -r requirements.txt --default-timeout=900
 
