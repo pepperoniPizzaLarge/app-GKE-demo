@@ -8,6 +8,6 @@ RUN pip install -r requirements.txt --default-timeout=900
 
 # RUN apt-get update && apt-get install -y curl
 
-COPY ./app /app
+COPY . .
 
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "5000"]
