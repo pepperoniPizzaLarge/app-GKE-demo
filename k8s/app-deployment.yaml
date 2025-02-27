@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: pepperonipizzalarge/app
+          image: pepperonipizzalarge/app-gc
           ports:
             - containerPort: 5000
           env:
