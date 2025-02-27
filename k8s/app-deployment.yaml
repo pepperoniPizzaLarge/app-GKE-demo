@@ -17,3 +17,14 @@ spec:
           image: pepperonipizzalarge/app
           ports:
             - containerPort: 5000
+          env:
+            - name: GGACCESSKEYID
+              valueFrom:
+                secretKeyRef:
+                  name: ggaccesskeyid
+                  key: GGACCESSKEYID
+            - name: HMACKEY
+              valueFrom:
+                secretKeyRef:
+                  name: hmackey
+                  key: HMACKEY

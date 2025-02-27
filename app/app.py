@@ -4,9 +4,11 @@ import socket
 import torch
 from transformers import pipeline
 from scripts.data_model import NLPDataInput, ImageDataInput, NLPDataOutput, ImageDataOutput
-from scripts import s3_utils
+from scripts import gcb_utils
 from fastapi import FastAPI
 
+GGACCESSKEYID = os.getenv("GGACCESSKEYID")
+HMACKEY = os.getenv("HMACKEY")
 
 # Download model
 device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
@@ -17,7 +19,10 @@ force_download = True  # True to force download w/o regards to existing dir
 
 
 if not os.path.isdir(local_path) or force_download:
-    s3_utils.download_dir(local_path=local_path, model_name=model_name)
+    gcb_utils.download_dir(local_path=local_path, 
+                           model_name=model_name, 
+                           google_access_key_id=GGACCESSKEYID,
+                           google_access_key_secret=HMACKEY)
 
 pose_classifier = pipeline('image-classification', model=local_path, device=device)
 
